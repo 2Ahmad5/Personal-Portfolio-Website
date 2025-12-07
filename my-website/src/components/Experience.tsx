@@ -24,7 +24,7 @@ const Experience = () => {
       period: "Jun 2024 - Aug 2024",
       description: "Optimized backend with dynamic content systems and designed an intuitive UI that increased engagement by 25% and contributed to over $80,000 in donations for Pakistani charity.",
       technologies: ["Node.js", "MongoDB", "React"],
-      link: "https://nustian.org"
+      link: "https://nustianusa.org/"
     }
   ];
 
