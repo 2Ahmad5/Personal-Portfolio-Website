@@ -26,12 +26,17 @@ const MainContent = () => {
   };
 
   return (
-    <div className="main-content">
+    <div className="main-content" onClick={() => activeSection && !isClosing && handleClose()}>
       <div className={`quadrant-grid ${activeSection ? 'expanded' : ''} ${activeSection ? `active-${activeSection}` : ''} ${isClosing ? 'closing' : ''}`}>
         {/* Top Left - Experience */}
         <div
           className={`quadrant top-left ${activeSection === 'experience' ? 'active' : ''} ${activeSection && activeSection !== 'experience' ? 'hidden' : ''} ${isClosing && activeSection === 'experience' ? 'closing' : ''}`}
-          onClick={() => !activeSection && !isClosing && handleQuadrantClick('experience')}
+          onClick={(e) => {
+            if (!activeSection && !isClosing) {
+              e.stopPropagation();
+              handleQuadrantClick('experience');
+            }
+          }}
         >
           <h2 className="quadrant-title">Experience</h2>
           {activeSection === 'experience' && (
@@ -45,7 +50,7 @@ const MainContent = () => {
               >
                 x
               </button>
-              <div className="section-content">
+              <div className="section-content" onClick={(e) => e.stopPropagation()}>
                 <Experience />
               </div>
             </>
@@ -55,7 +60,12 @@ const MainContent = () => {
         {/* Top Right - Projects */}
         <div
           className={`quadrant top-right ${activeSection === 'projects' ? 'active' : ''} ${activeSection && activeSection !== 'projects' ? 'hidden' : ''} ${isClosing && activeSection === 'projects' ? 'closing' : ''}`}
-          onClick={() => !activeSection && !isClosing && handleQuadrantClick('projects')}
+          onClick={(e) => {
+            if (!activeSection && !isClosing) {
+              e.stopPropagation();
+              handleQuadrantClick('projects');
+            }
+          }}
         >
           <h2 className="quadrant-title">Projects</h2>
           {activeSection === 'projects' && (
@@ -69,7 +79,7 @@ const MainContent = () => {
               >
                 x
               </button>
-              <div className="section-content">
+              <div className="section-content" onClick={(e) => e.stopPropagation()}>
                 <Projects />
               </div>
             </>
@@ -79,7 +89,12 @@ const MainContent = () => {
         {/* Bottom Left - About */}
         <div
           className={`quadrant bottom-left ${activeSection === 'about' ? 'active' : ''} ${activeSection && activeSection !== 'about' ? 'hidden' : ''} ${isClosing && activeSection === 'about' ? 'closing' : ''}`}
-          onClick={() => !activeSection && !isClosing && handleQuadrantClick('about')}
+          onClick={(e) => {
+            if (!activeSection && !isClosing) {
+              e.stopPropagation();
+              handleQuadrantClick('about');
+            }
+          }}
         >
           <h2 className="quadrant-title">About</h2>
           {activeSection === 'about' && (
@@ -93,7 +108,7 @@ const MainContent = () => {
               >
                 x
               </button>
-              <div className="section-content">
+              <div className="section-content" onClick={(e) => e.stopPropagation()}>
                 <About />
               </div>
             </>
@@ -103,7 +118,12 @@ const MainContent = () => {
         {/* Bottom Right - Blog */}
         <div
           className={`quadrant bottom-right ${activeSection === 'blog' ? 'active' : ''} ${activeSection && activeSection !== 'blog' ? 'hidden' : ''} ${isClosing && activeSection === 'blog' ? 'closing' : ''}`}
-          onClick={() => !activeSection && !isClosing && handleQuadrantClick('blog')}
+          onClick={(e) => {
+            if (!activeSection && !isClosing) {
+              e.stopPropagation();
+              handleQuadrantClick('blog');
+            }
+          }}
         >
           <h2 className="quadrant-title">Blog</h2>
           {activeSection === 'blog' && (
@@ -117,7 +137,7 @@ const MainContent = () => {
               >
                 x
               </button>
-              <div className="section-content">
+              <div className="section-content" onClick={(e) => e.stopPropagation()}>
                 <Blog />
               </div>
             </>
