@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.company-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 40vw;
+  margin-top: 0px;
+  padding-top: 0px;
+  border-radius: 14px;
+  background: linear-gradient(
+    90deg,
+    #1a1a1a,
+    #1a1a1a
+  );
+  overflow: visible;
+}
+
+.company-card {
+  display: flex;
+  width: 100%;
+  height: 9vw;
+  
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-color, #1a1a1a);
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.company-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.company-card:hover::before {
+  left: 150%;
+  transition: left 0.6s ease-in-out;
+}
+
+.company-card::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-image:
+    /* Dense edge - right side */
+    radial-gradient(circle at 95% 8%, color-mix(in srgb, var(--text-color) 40%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--text-color) 45%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 97% 28%, color-mix(in srgb, var(--text-color) 35%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 90% 40%, color-mix(in srgb, var(--text-color) 42%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 94% 52%, color-mix(in srgb, var(--text-color) 40%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 88% 62%, color-mix(in srgb, var(--text-color) 45%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 93% 75%, color-mix(in srgb, var(--text-color) 35%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 96% 88%, color-mix(in srgb, var(--text-color) 40%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 89% 95%, color-mix(in srgb, var(--text-color) 32%, transparent) 2px, transparent 2px),
+    /* Second layer */
+    radial-gradient(circle at 82% 5%, color-mix(in srgb, var(--text-color) 28%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 78% 22%, color-mix(in srgb, var(--text-color) 28%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 85% 35%, color-mix(in srgb, var(--text-color) 25%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 80% 48%, color-mix(in srgb, var(--text-color) 28%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 75% 62%, color-mix(in srgb, var(--text-color) 22%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 83% 78%, color-mix(in srgb, var(--text-color) 25%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 79% 92%, color-mix(in srgb, var(--text-color) 22%, transparent) 2px, transparent 2px),
+    /* Third layer - spreading out */
+    radial-gradient(circle at 68% 12%, color-mix(in srgb, var(--text-color) 18%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 65% 32%, color-mix(in srgb, var(--text-color) 15%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 70% 55%, color-mix(in srgb, var(--text-color) 16%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 62% 75%, color-mix(in srgb, var(--text-color) 14%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 72% 88%, color-mix(in srgb, var(--text-color) 15%, transparent) 2px, transparent 2px),
+    /* Sparse outer */
+    radial-gradient(circle at 52% 18%, color-mix(in srgb, var(--text-color) 10%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 48% 42%, color-mix(in srgb, var(--text-color) 8%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 55% 65%, color-mix(in srgb, var(--text-color) 9%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 42% 85%, color-mix(in srgb, var(--text-color) 6%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--text-color) 5%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 30% 55%, color-mix(in srgb, var(--text-color) 4%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 22% 38%, color-mix(in srgb, var(--text-color) 3%, transparent) 2px, transparent 2px);
+  pointer-events: none;
+}
+
+/* When image is on right, dots should be on left */
+.company-card.image-right::after {
+  right: auto;
+  left: 0;
+  background-image:
+    /* Dense edge - left side (flipped percentages) */
+    radial-gradient(circle at 5% 8%, color-mix(in srgb, var(--text-color) 40%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 8% 18%, color-mix(in srgb, var(--text-color) 45%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 3% 28%, color-mix(in srgb, var(--text-color) 35%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 10% 40%, color-mix(in srgb, var(--text-color) 42%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 6% 52%, color-mix(in srgb, var(--text-color) 40%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 12% 62%, color-mix(in srgb, var(--text-color) 45%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 7% 75%, color-mix(in srgb, var(--text-color) 35%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 4% 88%, color-mix(in srgb, var(--text-color) 40%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 11% 95%, color-mix(in srgb, var(--text-color) 32%, transparent) 2px, transparent 2px),
+    /* Second layer */
+    radial-gradient(circle at 18% 5%, color-mix(in srgb, var(--text-color) 28%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 22% 22%, color-mix(in srgb, var(--text-color) 28%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 15% 35%, color-mix(in srgb, var(--text-color) 25%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 20% 48%, color-mix(in srgb, var(--text-color) 28%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 25% 62%, color-mix(in srgb, var(--text-color) 22%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 17% 78%, color-mix(in srgb, var(--text-color) 25%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 21% 92%, color-mix(in srgb, var(--text-color) 22%, transparent) 2px, transparent 2px),
+    /* Third layer - spreading out */
+    radial-gradient(circle at 32% 12%, color-mix(in srgb, var(--text-color) 18%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 35% 32%, color-mix(in srgb, var(--text-color) 15%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 30% 55%, color-mix(in srgb, var(--text-color) 16%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 38% 75%, color-mix(in srgb, var(--text-color) 14%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 28% 88%, color-mix(in srgb, var(--text-color) 15%, transparent) 2px, transparent 2px),
+    /* Sparse outer */
+    radial-gradient(circle at 48% 18%, color-mix(in srgb, var(--text-color) 10%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 52% 42%, color-mix(in srgb, var(--text-color) 8%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 45% 65%, color-mix(in srgb, var(--text-color) 9%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 58% 85%, color-mix(in srgb, var(--text-color) 6%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 65% 25%, color-mix(in srgb, var(--text-color) 5%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 70% 55%, color-mix(in srgb, var(--text-color) 4%, transparent) 2px, transparent 2px),
+    radial-gradient(circle at 78% 38%, color-mix(in srgb, var(--text-color) 3%, transparent) 2px, transparent 2px);
+}
+
+.company-image-container {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--image-size, 100px);
+  height: var(--image-size, 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  background: var(--bg-color, #1a1a1a);
+  border-radius: 8px;
+}
+
+.company-image {
+  width: var(--image-size, 100px);
+  height: var(--image-size, 100px);
+  object-fit: contain;
+  opacity: var(--image-opacity, 0.5);
+}
+
+.company-gradient {
+  display: none;
+}
+
+.company-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 25px 0px 25px;
+  margin: 0px 0px 0px 0px;
+  flex: 1;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+.company-title {
+  font-family: 'Bruno Ace SC', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--text-color, white);
+  margin: 0 0 8px 0;
+  letter-spacing: 0.05em;
+}
+
+.company-description {
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--desc-color, #c8c8c8);
+  margin: 0;
+  line-height: 1.5;
+  margin-left: auto;
+  max-width: 480px;
+}
+
+/* Image on the right side */
+.company-card.image-right .company-image-container {
+  left: auto;
+  right: 15px;
+}
+
+.company-card.image-right .company-content {
+  text-align: left;
+}
+
+.company-card.image-right .company-description {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .company-card {
+    max-width: 400px;
+    height: 90px;
+  }
+
+  .company-image-container {
+    width: 90px;
+  }
+
+  .company-title {
+    font-size: 0.9rem;
+  }
+
+  .company-description {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-card {
+    max-width: 320px;
+    height: 80px;
+  }
+
+  .company-image-container {
+    width: 80px;
+  }
+
+  .company-content {
+    padding: 10px 15px 10px 8px;
+  }
+
+  .company-card.image-right .company-content {
+    padding: 10px 8px 10px 15px;
+  }
+
+  .company-title {
+    font-size: 0.85rem;
+  }
+
+  .company-description {
+    font-size: 0.65rem;
+  }
+}

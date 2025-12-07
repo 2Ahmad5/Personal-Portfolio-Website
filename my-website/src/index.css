@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   background: black;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body::before {
