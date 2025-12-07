@@ -16,9 +16,9 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   width: 40vw;
-  height: 50vw;
-  max-width: 600px;
-  max-height: 600px;
+  height: 50vh;
+  min-width: 370px;
+  min-height: 600px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -353,7 +353,7 @@
 /* Title styling */
 .quadrant-title {
   font-family: 'Bruno Ace SC', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #ffffff;
   letter-spacing: 0.1em;
   text-transform: uppercase;
