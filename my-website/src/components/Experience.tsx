@@ -1,31 +1,34 @@
-import './Quadrants.css';
+import "./Quadrants.css";
 
 const Experience = () => {
   const experiences = [
     {
       company: "Cascading AI",
       role: "Software Engineer Intern",
-      period: "May 2025 - Present",
-      description: "Forward-deployed with major banks to build AI agents that automated SBA loan processing (10× faster) and generated banker UIs from schemas, reducing engineering requests by 60%. Supported $29M Series A through core infrastructure contributions.",
+      period: "May 2025 - Feb 2026",
+      description:
+        "Forward-deployed with major banks to build AI agents that automated SBA loan processing (10× faster) and generated banker UIs from schemas, reducing engineering requests by 60%. Supported $29M Series A through core infrastructure contributions.",
       technologies: ["TRPC", "Docker", "PostgreSQL", "AWS"],
-      link: "https://cascading.ai"
+      link: "https://cascading.ai",
     },
     {
       company: "Duke Fuqua School of Business",
       role: "Research Assistant",
       period: "Sept 2024 - May 2025",
-      description: "Built a full-stack investment insights platform using Svelte, Flask, and Python to process real-time stock data for 100+ Finance graduate students.",
+      description:
+        "Built a full-stack investment insights platform using Svelte, Flask, and Python to process real-time stock data for 100+ Finance graduate students.",
       technologies: ["Svelte", "Flask", "Python"],
-      link: "https://www.fuqua.duke.edu"
+      link: "https://www.fuqua.duke.edu",
     },
     {
       company: "Nustian USA",
       role: "Full Stack Developer",
       period: "Jun 2024 - Aug 2024",
-      description: "Optimized backend with dynamic content systems and designed an intuitive UI that increased engagement by 25% and contributed to over $80,000 in donations for Pakistani charity.",
+      description:
+        "Optimized backend with dynamic content systems and designed an intuitive UI that increased engagement by 25% and contributed to over $80,000 in donations for Pakistani charity.",
       technologies: ["Node.js", "MongoDB", "React"],
-      link: "https://nustianusa.org/"
-    }
+      link: "https://nustianusa.org/",
+    },
   ];
 
   return (
@@ -63,7 +66,9 @@ const Experience = () => {
           <p className="experience-description">{exp.description}</p>
           <div className="technologies">
             {exp.technologies.map((tech, techIndex) => (
-              <span key={techIndex} className="tech-tag">{tech}</span>
+              <span key={techIndex} className="tech-tag">
+                {tech}
+              </span>
             ))}
           </div>
         </div>
