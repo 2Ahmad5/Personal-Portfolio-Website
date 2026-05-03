@@ -3,7 +3,9 @@ import './NameDisplay.css';
 const NameDisplay = () => {
   return (
     <div className="name-container">
-      <h1 className="name-display">Ahmad Choudhary</h1>
+      <h1 className="name-display">
+        <span className="typed-name">Ahmad Choudhary</span>
+      </h1>
       <div className="social-links">
         <a href="mailto:chahmad2005@gmail.com" className="social-link">chahmad2005@gmail.com</a>
         <span className="separator">|</span>

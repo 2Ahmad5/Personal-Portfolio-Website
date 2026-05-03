@@ -16,7 +16,7 @@
   height: 100vh;
   width: 100%;
   position: relative;
-  animation: shrink-container 1s ease-in-out 1.2s forwards;
+  animation: shrink-container 1s ease-in-out 1.9s forwards;
 }
 
 @keyframes shrink-container {
@@ -26,7 +26,7 @@
 }
 
 .name-display {
-  font-size: 5rem;
+  font-size: 2.5rem;
   color: white;
   font-weight: 400;
   text-align: center;
@@ -35,13 +35,52 @@
   /* font-family: 'Denton Condensed Test', sans-serif; */
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
+  width: max-content;
+  max-width: calc(100vw - 32px);
   position: absolute;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
-  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both,
-                     move-to-top 1s ease-in-out 1.2s forwards;
-          animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both,
-                     move-to-top 1s ease-in-out 1.2s forwards;
+  transform: translate(-50%, -50%);
+  -webkit-animation: move-to-top 1s ease-in-out 1.9s forwards;
+          animation: move-to-top 1s ease-in-out 1.9s forwards;
+}
+
+.typed-name {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  max-width: 100%;
+  border-right: 2px solid rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  -webkit-animation: typing 1.5s steps(17, end) 0.2s forwards,
+                     caret-blink 0.7s step-end 0.2s 3,
+                     caret-hide 0.01s linear 1.9s forwards;
+          animation: typing 1.5s steps(17, end) 0.2s forwards,
+                     caret-blink 0.7s step-end 0.2s 3,
+                     caret-hide 0.01s linear 1.9s forwards;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes caret-hide {
+  to {
+    border-right-color: transparent;
+  }
 }
 
 @-webkit-keyframes text-focus-in {
@@ -72,64 +111,64 @@
 
 @-webkit-keyframes move-to-top {
   0% {
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 5rem;
+    transform: translate(-50%, -50%);
   }
   100% {
+    left: 50%;
     top: 60px;
-    transform: translateY(0);
-    font-size: 2.5rem;
+    transform: translateX(-50%);
   }
 }
 
 @keyframes move-to-top {
   0% {
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 5rem;
+    transform: translate(-50%, -50%);
   }
   100% {
+    left: 50%;
     top: 60px;
-    transform: translateY(0);
-    font-size: 2.5rem;
+    transform: translateX(-50%);
   }
 }
 
 @media (max-width: 768px) {
   .name-display {
-    font-size: 3.5rem;
+    font-size: 2rem;
   }
   
   @keyframes move-to-top {
     0% {
+      left: 50%;
       top: 50%;
-      transform: translateY(-50%);
-      font-size: 3.5rem;
+      transform: translate(-50%, -50%);
     }
     100% {
+      left: 50%;
       top: 40px;
-      transform: translateY(0);
-      font-size: 2rem;
+      transform: translateX(-50%);
     }
   }
 }
 
 @media (max-width: 480px) {
   .name-display {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 
   @keyframes move-to-top {
     0% {
+      left: 50%;
       top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.5rem;
+      transform: translate(-50%, -50%);
     }
     100% {
+      left: 50%;
       top: 30px;
-      transform: translateY(0);
-      font-size: 1.5rem;
+      transform: translateX(-50%);
     }
   }
 }
@@ -144,7 +183,7 @@
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   opacity: 0;
-  animation: fade-in 0.8s ease-in-out 2.2s forwards;
+  animation: fade-in 0.8s ease-in-out 3s forwards;
 }
 
 .social-link {

@@ -13,7 +13,7 @@
   transform: translateY(-50%);
   z-index: 1000;
   opacity: 0;
-  animation: fade-in-nav 1s ease-in-out 3s forwards;
+  animation: fade-in-nav 1s ease-in-out 3.4s forwards;
 }
 
 .stepper-container {
