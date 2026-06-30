@@ -1,22 +1,111 @@
-.app {
-  background: transparent;
+.ben-10-canvas {
+  align-items: center;
+  background: #000;
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
+  perspective: 900px;
   position: relative;
+  width: 100vw;
 }
 
-.app::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    linear-gradient(180deg, transparent 0%, rgba(147, 51, 234, 0.02) 50%, transparent 100%);
+.omnitrix {
+  --ring-rotation: 0deg;
+  display: block;
+  height: min(72vh, calc(72vw * 362 / 492));
+  opacity: 1;
+  position: relative;
+  transform-origin: center;
+  transition: opacity 300ms ease, transform 700ms cubic-bezier(0.19, 1, 0.22, 1), filter 700ms ease;
+  width: min(72vw, calc(72vh * 492 / 362));
+  z-index: 3;
+}
+
+.projecting .omnitrix {
+  filter: blur(2px);
+  opacity: 0;
+  transform: translate3d(0, 18vh, -120px) scale(0.28);
   pointer-events: none;
-  z-index: 0;
+}
+
+.ben-10-canvas.projecting {
+  background: #fff;
+}
+
+.side-watch {
+  bottom: 50%;
+  display: block;
+  left: 50%;
+  max-height: 94vh;
+  max-width: 760px;
+  opacity: 0;
+  position: absolute;
+  transform: translate(-50%, 58%) scale(0.94);
+  transform-origin: center;
+  transition: opacity 420ms ease 220ms, transform 850ms cubic-bezier(0.19, 1, 0.22, 1) 180ms, filter 850ms ease 180ms;
+  width: min(78vw, 760px);
+  z-index: 4;
+}
+
+.projecting .side-watch {
+  filter: none;
+  opacity: 1;
+  transform: translate(-50%, 50%) scale(0.94);
+}
+
+.center-ring {
+  transform: rotate(var(--ring-rotation));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.section-title {
+  cursor: pointer;
+}
+
+.section-title text {
+  dominant-baseline: middle;
+  fill: #071008;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  pointer-events: all;
+  text-anchor: middle;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.top-button-cap,
+.bottom-button-cap {
+  transform-box: fill-box;
+}
+
+.top-button-cap {
+  transform-origin: center bottom;
+}
+
+.bottom-button-cap {
+  transform-origin: center top;
+}
+
+.watch-buttons.pressed .top-button-cap {
+  animation: top-button-click 170ms ease-out;
+}
+
+.watch-buttons.pressed .bottom-button-cap {
+  animation: bottom-button-click 170ms ease-out;
+}
+
+@keyframes top-button-click {
+  45% {
+    transform: scaleY(0.68);
+  }
+}
+
+@keyframes bottom-button-click {
+  45% {
+    transform: scaleY(0.68);
+  }
 }
