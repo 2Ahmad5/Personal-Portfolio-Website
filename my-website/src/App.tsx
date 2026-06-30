@@ -1,22 +1,35 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import sideWatchSvg from './assets/sideways watch.svg'
 
 const sectionTitles = ['Experience', 'Projects', 'About', 'Blog']
 const wrapIndex = (index: number) => ((index % sectionTitles.length) + sectionTitles.length) % sectionTitles.length
+type ProjectionPhase = 'idle' | 'forming' | 'projecting'
 
 function App() {
   const [buttonsPressed, setButtonsPressed] = useState(false)
-  const [projecting, setProjecting] = useState(false)
+  const [projectionPhase, setProjectionPhase] = useState<ProjectionPhase>('idle')
   const svgRef = useRef<SVGSVGElement>(null)
   const centerShapeRef = useRef<SVGPolygonElement>(null)
   const currentTitleRef = useRef<SVGTextElement>(null)
   const nextTitleRef = useRef<SVGTextElement>(null)
 
   const handleTitleClick = () => {
+    if (projectionPhase !== 'idle') return
+
     setButtonsPressed(true)
-    setProjecting(true)
-    window.setTimeout(() => setButtonsPressed(false), 170)
+    window.setTimeout(() => {
+      setButtonsPressed(false)
+      setProjectionPhase('forming')
+    }, 170)
   }
+
+  useEffect(() => {
+    if (projectionPhase !== 'forming') return
+
+    const projectionTimeout = window.setTimeout(() => setProjectionPhase('projecting'), 1320)
+    return () => window.clearTimeout(projectionTimeout)
+  }, [projectionPhase])
 
   useEffect(() => {
     const hourglassPoints = [
@@ -108,7 +121,7 @@ function App() {
   }, [])
 
   return (
-    <main className={`ben-10-canvas ${projecting ? 'projecting' : ''}`} aria-label="Ben 10 Omnitrix watch illustration">
+    <main className={`ben-10-canvas projection-${projectionPhase}`} aria-label="Ben 10 Omnitrix watch illustration">
       <svg
         ref={svgRef}
         className="omnitrix"
@@ -227,128 +240,90 @@ function App() {
             </g>
           </g>
 
-          <circle cx="246" cy="181" r="88" fill="#030403" strokeWidth="4" />
-          <g clipPath="url(#faceClip)">
-            <circle cx="246" cy="181" r="82" fill="#030403" />
-            <polygon
-              ref={centerShapeRef}
-              points="246,96 246,96 316,181 246,266 246,266 176,181"
-              fill="url(#symbolGreen)"
-            />
+          <g className="watch-face" onClick={handleTitleClick}>
+            <circle cx="246" cy="181" r="88" fill="#030403" strokeWidth="4" />
+            <g clipPath="url(#faceClip)">
+              <circle cx="246" cy="181" r="82" fill="#030403" />
+              <polygon
+                ref={centerShapeRef}
+                points="246,96 246,96 316,181 246,266 246,266 176,181"
+                fill="url(#symbolGreen)"
+              />
+            </g>
+            <g className="section-title">
+              <text ref={currentTitleRef} x="246" y="181">Experience</text>
+              <text ref={nextTitleRef} x="246" y="181" opacity="0">Projects</text>
+            </g>
+            <circle cx="246" cy="181" r="82" fill="none" strokeWidth="6" />
           </g>
-          <g className="section-title" onClick={handleTitleClick}>
-            <text ref={currentTitleRef} x="246" y="181">Experience</text>
-            <text ref={nextTitleRef} x="246" y="181" opacity="0">Projects</text>
-          </g>
-          <circle cx="246" cy="181" r="82" fill="none" strokeWidth="6" />
         </g>
       </svg>
-      <svg
-        className="side-watch"
-        viewBox="0 0 820 1024"
-        role="img"
-        aria-label="Side view of Omnitrix watch projecting green light"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <linearGradient id="simpleGreen" x1="138" y1="220" x2="644" y2="940" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#0bc72b" />
-            <stop offset="0.5" stopColor="#078d1d" />
-            <stop offset="1" stopColor="#02550d" />
-          </linearGradient>
-          <linearGradient id="simpleGreenBright" x1="166" y1="222" x2="663" y2="402" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#12d734" />
-            <stop offset="0.55" stopColor="#09ab25" />
-            <stop offset="1" stopColor="#057316" />
-          </linearGradient>
-          <linearGradient id="simpleSteel" x1="190" y1="90" x2="676" y2="292" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#68727f" />
-            <stop offset="0.43" stopColor="#c8d0d8" />
-            <stop offset="1" stopColor="#59636e" />
-          </linearGradient>
-          <linearGradient id="simpleSteelDark" x1="80" y1="292" x2="770" y2="312" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#68737e" />
-            <stop offset="0.5" stopColor="#c3ccd4" />
-            <stop offset="1" stopColor="#58636d" />
-          </linearGradient>
-          <linearGradient id="simpleFaceGreen" x1="250" y1="95" x2="572" y2="184" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#94e31d" />
-            <stop offset="1" stopColor="#7acc13" />
-          </linearGradient>
-          <linearGradient id="simpleButton" x1="70" y1="308" x2="760" y2="323" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="#56616c" />
-            <stop offset="0.46" stopColor="#c5ced7" />
-            <stop offset="1" stopColor="#65707a" />
-          </linearGradient>
-          <clipPath id="simpleFaceClip">
-            <ellipse cx="410" cy="142" rx="230" ry="70" />
-          </clipPath>
-          <clipPath id="simpleGlyphClip">
-            <path d="M169 305c108 58 377 58 487-2v92c-116 59-367 60-487 1Z" />
-          </clipPath>
-        </defs>
-
-        <rect width="820" height="1024" fill="#fff" />
-        <g stroke="#050605" strokeLinejoin="round" strokeLinecap="round">
-          <path d="M146 365C68 488 53 720 154 866c113 164 397 164 512 0 101-145 87-378 9-501h-82c67 112 72 312-14 426-80 105-258 105-337 0-86-114-81-314-14-426Z" fill="#050605" strokeWidth="5" />
-          <path d="M158 363C84 482 73 707 169 844c105 150 371 150 476 0 96-137 85-362 11-481h-64c62 109 62 293-16 397-77 103-260 103-337 0-78-104-78-288-16-397Z" fill="url(#simpleGreen)" strokeWidth="4" />
-          <path d="M214 382c-51 105-44 261 24 354 77 106 263 106 340 0 68-93 75-249 24-354h-45c44 94 36 228-22 301-63 79-191 79-254 0-58-73-66-207-22-301Z" fill="#050605" strokeWidth="4" />
-          <path d="M166 404c-22 65-25 153-8 232M653 404c22 65 25 153 8 232M197 853c57 69 152 103 250 94M625 823c-36 68-105 111-187 124" stroke="#063d0c" strokeWidth="5" />
-          <path d="M122 565c2-70 17-134 44-183M706 565c-2-70-17-134-44-183" stroke="#14d435" strokeWidth="8" opacity=".55" />
-          <path d="M153 702c24 25 52 45 84 60M586 762c32-15 60-35 84-60M160 845l52 30M609 875l52-30" stroke="#07901e" strokeWidth="6" />
-
-          <path d="M172 286h478c43 0 78 35 78 78v39H91v-39c0-43 35-78 81-78Z" fill="#050605" strokeWidth="5" />
-          <path d="M91 344c87 73 548 73 637 0v74c-68 65-568 66-637 0Z" fill="url(#simpleGreenBright)" strokeWidth="5" />
-          <path d="M100 405c79 55 541 55 620 0v52c-92 56-526 56-620 0Z" fill="#050605" strokeWidth="4" />
-          <path d="M139 445h132v-73H139ZM548 372h133v73H548Z" fill="#071007" />
-          <path d="M96 373h635M113 421c78 44 508 44 588 0" stroke="#050605" strokeWidth="4" />
-          <path d="M184 293v92M303 286v112M518 286v112M646 293v92" stroke="#064b10" strokeWidth="3" />
-
-          <path d="M169 305c108 58 377 58 487-2v92c-116 59-367 60-487 1Z" fill="#050605" strokeWidth="5" />
-          <g clipPath="url(#simpleGlyphClip)">
-            <rect x="138" y="288" width="542" height="130" fill="#050605" />
-            <path d="M171 331h38v34h-27v30h-30v-78h19ZM228 323c26 0 34 28 12 45l-19 15h44v24h-79v-22l34-28c11-9 8-16-3-16h-28v-18ZM282 322h25v71h-25ZM325 322h28v55h62v28h-90ZM443 329h61v24h-36v15h57v25h-82ZM541 322h30v29h34v-29h31v85h-31v-31h-34v31h-30ZM660 322h33v85h-33Z" fill="#8bd823" />
-            <circle cx="491" cy="364" r="18" fill="#8bd823" />
-            <path d="M219 399h63M380 405h81M596 399h49" stroke="#8bd823" strokeWidth="9" />
-          </g>
-
-          <path d="M172 72c52-79 420-79 474 0l58 150c-77 98-511 98-590 0Z" fill="url(#simpleSteel)" strokeWidth="6" />
-          <path d="M205 92c59-61 350-61 409 0 55 57-4 126-205 126S150 149 205 92Z" fill="#050605" strokeWidth="6" />
-          <ellipse cx="410" cy="142" rx="230" ry="70" fill="#0e151b" strokeWidth="5" />
-          <g clipPath="url(#simpleFaceClip)">
-            <rect x="170" y="65" width="480" height="150" fill="#050605" />
-            <path d="M262 112h170l-54 57 195-38 68 42-221 49-52-35-160 36-80-45Z" fill="url(#simpleFaceGreen)" />
-            <path d="M170 168c125 38 355 38 480 0v75H170Z" fill="#050605" opacity=".65" />
-          </g>
-          <ellipse cx="410" cy="142" rx="254" ry="88" fill="none" stroke="#050605" strokeWidth="15" />
-          <ellipse cx="410" cy="142" rx="228" ry="67" fill="none" stroke="#178c26" strokeWidth="18" />
-          <ellipse cx="410" cy="142" rx="207" ry="55" fill="none" stroke="#1a232b" strokeWidth="14" />
-          <path d="M169 221c101 51 380 52 482 0" stroke="#ccd4dc" strokeWidth="7" opacity=".65" />
-          <path d="M285 64v68M528 64v68M176 188l61 18M584 206l61-18" stroke="#222b34" strokeWidth="4" />
-          <path d="M151 116c42-64 188-77 307-69M597 85c38 25 63 65 65 101" stroke="#303942" strokeWidth="5" opacity=".7" />
-
-          <path d="M91 339H46c-16 0-29-13-29-29v-21c0-16 13-29 29-29h45Z" fill="url(#simpleButton)" strokeWidth="5" />
-          <ellipse cx="45" cy="300" rx="22" ry="40" fill="#74808b" strokeWidth="5" />
-          <ellipse cx="45" cy="300" rx="12" ry="27" fill="#242c34" strokeWidth="4" />
-          <path d="M76 263v73M102 267v66" stroke="#ccd4dc" strokeWidth="4" opacity=".6" />
-          <path d="M728 260h45c16 0 29 13 29 29v21c0 16-13 29-29 29h-45Z" fill="url(#simpleButton)" strokeWidth="5" />
-          <ellipse cx="775" cy="300" rx="22" ry="40" fill="#74808b" strokeWidth="5" />
-          <ellipse cx="775" cy="300" rx="12" ry="27" fill="#242c34" strokeWidth="4" />
-          <path d="M718 267v66M744 263v73" stroke="#ccd4dc" strokeWidth="4" opacity=".6" />
-          <g transform="translate(490 372)">
-            <path d="M0 0h56c30 0 55 25 55 55v18c0 30-25 55-55 55H0Z" fill="url(#simpleButton)" strokeWidth="5" />
-            <ellipse cx="57" cy="64" rx="44" ry="56" fill="#8c97a2" strokeWidth="5" />
-            <ellipse cx="57" cy="64" rx="24" ry="34" fill="#6d7782" strokeWidth="5" />
-            <ellipse cx="57" cy="64" rx="12" ry="24" fill="#202832" strokeWidth="4" />
-            <path d="M19 12c35 12 62 44 71 82M34 7c37 17 62 48 72 86" stroke="#c9d1d8" strokeWidth="4" opacity=".6" />
-          </g>
-
-          <path d="M314 454c65 20 129 20 193 0l-16 92c-50 22-116 22-165 0Z" fill="url(#simpleSteelDark)" strokeWidth="5" />
-          <path d="M325 460c54 14 112 14 169 0" stroke="#eef3f7" strokeWidth="4" opacity=".55" />
-          <path d="M307 456l-21-42M514 456l21-42" stroke="#050605" strokeWidth="5" />
-        </g>
-      </svg>
+      {projectionPhase === 'forming' && <WatchMorph />}
+      {projectionPhase === 'projecting' && (
+        <div className="projection-stage" aria-label="Projected Omnitrix hologram">
+          <VerticalWatch />
+        </div>
+      )}
     </main>
+  )
+}
+
+function WatchMorph() {
+  return (
+    <svg
+      className="watch-morph"
+      viewBox="0 0 492 362"
+      role="presentation"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="morphGreen" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="#34e84b" />
+          <stop offset="0.45" stopColor="#08a824" />
+          <stop offset="1" stopColor="#034e0e" />
+        </linearGradient>
+        <linearGradient id="morphSteel" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="#c2ccd6" />
+          <stop offset="0.52" stopColor="#6c7681" />
+          <stop offset="1" stopColor="#202832" />
+        </linearGradient>
+        <radialGradient id="morphGlow" cx="50%" cy="50%" r="52%">
+          <stop offset="0" stopColor="#b8ff31" />
+          <stop offset="0.58" stopColor="#6fcb15" />
+          <stop offset="1" stopColor="#071008" />
+        </radialGradient>
+      </defs>
+
+      <g className="morph-strap morph-strap-left">
+        <path d="M41 156c69-75 196-75 263 0l-32 40c-50-58-146-59-196-1Z" />
+        <path d="M41 336c69 75 196 75 263 0l-32-40c-50 58-146 59-196 1Z" />
+      </g>
+
+      <g className="morph-strap morph-strap-right">
+        <path d="M188 116h118c24 7 45 19 61 37l-42 42c-23-24-55-36-95-36h-42Z" />
+        <path d="M188 246h42c40 0 72-12 95-36l42 42c-16 18-37 30-61 37H188Z" />
+      </g>
+
+      <g className="morph-core">
+        <circle cx="246" cy="181" r="102" className="morph-core-outer" />
+        <circle cx="246" cy="181" r="81" className="morph-core-face" />
+        <path className="morph-core-symbol" d="M246 100 313 181 246 262 179 181Z" />
+      </g>
+    </svg>
+  )
+}
+
+function VerticalWatch() {
+  return (
+    <div className="side-watch-shell">
+      <img
+        className="side-watch"
+        src={sideWatchSvg}
+        alt="Three-quarter view of Ben 10 Omnitrix watch"
+      />
+      <div className="hologram-beam" aria-hidden="true" />
+    </div>
   )
 }
 
