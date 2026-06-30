@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     if (projectionPhase !== 'forming') return
 
-    const projectionTimeout = window.setTimeout(() => setProjectionPhase('projecting'), 1320)
+    const projectionTimeout = window.setTimeout(() => setProjectionPhase('projecting'), 940)
     return () => window.clearTimeout(projectionTimeout)
   }, [projectionPhase])
 
@@ -258,59 +258,12 @@ function App() {
           </g>
         </g>
       </svg>
-      {projectionPhase === 'forming' && <WatchMorph />}
       {projectionPhase === 'projecting' && (
         <div className="projection-stage" aria-label="Projected Omnitrix hologram">
           <VerticalWatch />
         </div>
       )}
     </main>
-  )
-}
-
-function WatchMorph() {
-  return (
-    <svg
-      className="watch-morph"
-      viewBox="0 0 492 362"
-      role="presentation"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="morphGreen" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#34e84b" />
-          <stop offset="0.45" stopColor="#08a824" />
-          <stop offset="1" stopColor="#034e0e" />
-        </linearGradient>
-        <linearGradient id="morphSteel" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#c2ccd6" />
-          <stop offset="0.52" stopColor="#6c7681" />
-          <stop offset="1" stopColor="#202832" />
-        </linearGradient>
-        <radialGradient id="morphGlow" cx="50%" cy="50%" r="52%">
-          <stop offset="0" stopColor="#b8ff31" />
-          <stop offset="0.58" stopColor="#6fcb15" />
-          <stop offset="1" stopColor="#071008" />
-        </radialGradient>
-      </defs>
-
-      <g className="morph-strap morph-strap-left">
-        <path d="M41 156c69-75 196-75 263 0l-32 40c-50-58-146-59-196-1Z" />
-        <path d="M41 336c69 75 196 75 263 0l-32-40c-50 58-146 59-196 1Z" />
-      </g>
-
-      <g className="morph-strap morph-strap-right">
-        <path d="M188 116h118c24 7 45 19 61 37l-42 42c-23-24-55-36-95-36h-42Z" />
-        <path d="M188 246h42c40 0 72-12 95-36l42 42c-16 18-37 30-61 37H188Z" />
-      </g>
-
-      <g className="morph-core">
-        <circle cx="246" cy="181" r="102" className="morph-core-outer" />
-        <circle cx="246" cy="181" r="81" className="morph-core-face" />
-        <path className="morph-core-symbol" d="M246 100 313 181 246 262 179 181Z" />
-      </g>
-    </svg>
   )
 }
 
@@ -322,7 +275,11 @@ function VerticalWatch() {
         src={sideWatchSvg}
         alt="Three-quarter view of Ben 10 Omnitrix watch"
       />
-      <div className="hologram-beam" aria-hidden="true" />
+      <div className="hologram-beam" aria-hidden="true">
+        <div className="hologram-text">
+          Software engineer building fast, polished web experiences with React, TypeScript, and thoughtful product design.
+        </div>
+      </div>
     </div>
   )
 }
