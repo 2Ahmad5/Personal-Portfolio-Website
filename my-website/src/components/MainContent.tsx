@@ -4,7 +4,6 @@ import Experience from './Experience';
 import Projects from './Projects';
 import About from './About';
 import Blog from './Blog';
-import ResumePDF from '../assets/Resume.pdf';
 
 type Section = 'experience' | 'about' | 'projects' | 'blog' | null;
 
@@ -145,13 +144,6 @@ const MainContent = () => {
         </div>
       </div>
 
-      <a
-        href={ResumePDF}
-        download="Ahmad_Choudhary_Resume.pdf"
-        className="resume-button"
-      >
-        Resume
-      </a>
     </div>
   );
 };

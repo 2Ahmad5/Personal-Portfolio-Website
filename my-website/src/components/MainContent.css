@@ -482,24 +482,3 @@
     opacity: 1;
   }
 }
-
-/* Resume button */
-.resume-button {
-  position: fixed;
-  bottom: 0.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Courier New', monospace;
-  font-size: 1.2rem;
-  color: #ccc;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  transition: color 0.3s ease;
-  z-index: 1000;
-  opacity: 0;
-  animation: fade-in 1s ease-in-out 2.5s forwards;
-}
-
-.resume-button:hover {
-  color: #ffffff;
-}

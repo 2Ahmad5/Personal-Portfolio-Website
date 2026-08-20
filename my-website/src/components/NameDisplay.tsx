@@ -1,4 +1,5 @@
 import './NameDisplay.css';
+import ResumePDF from '../assets/Resume.pdf';
 
 const NameDisplay = () => {
   return (
@@ -12,6 +13,8 @@ const NameDisplay = () => {
         <a href="https://github.com/2Ahmad5" target="_blank" rel="noopener noreferrer" className="social-link">github/2Ahmad5</a>
         <span className="separator">|</span>
         <a href="https://www.linkedin.com/in/ahmad-choudhary" target="_blank" rel="noopener noreferrer" className="social-link">linkedin/ahmad-choudhary</a>
+        <span className="separator">|</span>
+        <a href={ResumePDF} download="Ahmad_Choudhary_Resume.pdf" className="social-link">resume</a>
       </div>
     </div>
   );

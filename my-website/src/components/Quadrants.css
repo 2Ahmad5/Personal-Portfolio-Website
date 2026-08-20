@@ -31,11 +31,24 @@
 }
 
 .company-name {
-  font-family: 'Bruno Ace SC', sans-serif;
-  font-size: .8rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
   color: #ffffff;
   margin: 0;
   letter-spacing: 0.05em;
+}
+
+.company-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.experience-role {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #888;
+  margin: 0.35rem 0 0;
 }
 
 .company-link {
