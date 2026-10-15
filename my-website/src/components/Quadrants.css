@@ -14,6 +14,42 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  isolation: isolate;
+  position: relative;
+}
+
+.experience-watermark {
+  bottom: -2rem;
+  height: 13rem;
+  opacity: 0.16;
+  pointer-events: none;
+  position: absolute;
+  right: -0.5rem;
+  width: 13rem;
+  z-index: 0;
+}
+
+.experience-watermark--fuqua {
+  bottom: -3.5rem;
+  clip-path: inset(4%);
+  filter: brightness(2.2) saturate(1.2);
+  height: 15rem;
+  opacity: 0.3;
+  right: -1.5rem;
+  width: 15rem;
+}
+
+.experience-watermark--duke-cs {
+  bottom: -3rem;
+  filter: brightness(2.2) saturate(1.2);
+  opacity: 0.3;
+}
+
+.experience-item > .experience-header,
+.experience-item > .experience-description,
+.experience-item > .technologies {
+  position: relative;
+  z-index: 1;
 }
 
 .experience-header {

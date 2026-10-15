@@ -6,7 +6,7 @@ const Projects = () => {
       name: "Shahzad o3",
       description: "Fine-tuned an 8B LLM with LoRA, SFT, and RL to improve instruction-following, reasoning, and code generation. Built DPO and GRPO pipelines that raised math accuracy from 44% to 78.0% across evaluations.",
       technologies: ["NLP", "LoRA", "Reinforcement Learning", "PyTorch"],
-      link: ""
+      link: "https://github.com/2Ahmad5/CPS572_Sp26_mini_project/tree/ahmads-version"
     },
     {
       name: "Explorer",

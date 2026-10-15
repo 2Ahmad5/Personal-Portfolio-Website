@@ -1,6 +1,5 @@
 .main-content {
-  opacity: 0;
-  animation: fade-in 1s ease-in-out 3s forwards;
+  opacity: 1;
   padding: 0;
   margin: 0 auto;
   display: flex;
@@ -131,7 +130,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   position: relative;
   overflow: visible;
   border: none;
@@ -176,7 +174,6 @@
 .quadrant.active {
   position: absolute;
   z-index: 10;
-  cursor: default;
   background: transparent;
 }
 
@@ -415,7 +412,6 @@
   border: none;
   color: #ffffff;
   font-size: 1.2rem;
-  cursor: pointer;
   z-index: 100;
   line-height: 1;
   padding: 0;
@@ -466,15 +462,6 @@
 }
 
 @keyframes fade-in-button {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
   0% {
     opacity: 0;
   }

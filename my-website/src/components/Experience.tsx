@@ -1,4 +1,8 @@
 import "./Quadrants.css";
+import CascaLogo from "../assets/Casca.png";
+import CruiseLogo from "../assets/Cruise.png";
+import DukeComputerScienceLogo from "../assets/duke computer science.png";
+import FuquaLogo from "../assets/Duke Fuqua.png";
 
 const Experience = () => {
   const experiences = [
@@ -10,6 +14,7 @@ const Experience = () => {
         "Built SPARK, an ML infrastructure tool using Pyroscope telemetry to profile post-training workloads. Designed an AI-driven hotspot pipeline that reduced ML training regressions by about 40% and automated targeted PR fixes, improving workload performance by 12-18%.",
       technologies: ["Python", "Pyroscope", "Machine Learning"],
       link: "https://getcruise.com",
+      watermark: CruiseLogo,
     },
     {
       company: "Casca (YC S23)",
@@ -19,6 +24,7 @@ const Experience = () => {
         "Forward-deployed with major banks to build AI agents that automated SBA loan processing (10× faster) and generated banker UIs from schemas, reducing engineering requests by 60%. Supported $29M Series A through core infrastructure contributions.",
       technologies: ["TRPC", "Docker", "PostgreSQL", "AWS"],
       link: "https://cascading.ai",
+      watermark: CascaLogo,
     },
     {
       company: "Fain Lab, Duke University",
@@ -27,6 +33,8 @@ const Experience = () => {
       description:
         "Conducting LLM safety research with inverse reinforcement learning to improve reward interpretability and alignment. Evaluating preference-learning methods against Bradley-Terry algorithms and building pipelines to test reward-model robustness against unfiltered LLM-generated preferences.",
       technologies: ["LLMs", "Inverse Reinforcement Learning", "Python"],
+      watermark: DukeComputerScienceLogo,
+      watermarkClass: "experience-watermark--duke-cs",
     },
     {
       company: "Duke Fuqua School of Business",
@@ -35,6 +43,8 @@ const Experience = () => {
       description:
         "Built a full-stack investment insights platform using Svelte, Flask, and Python to process real-time stock data for 100+ Finance graduate students.",
       technologies: ["Svelte", "Flask", "Python"],
+      watermark: FuquaLogo,
+      watermarkClass: "experience-watermark--fuqua",
     },
   ];
 
@@ -85,6 +95,13 @@ const Experience = () => {
               </span>
             ))}
           </div>
+          {exp.watermark && (
+            <img
+              className={`experience-watermark ${exp.watermarkClass ?? ""}`}
+              src={exp.watermark}
+              alt=""
+            />
+          )}
         </div>
       ))}
     </div>
